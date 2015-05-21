@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :signed_in_user, only: [:index, :edit, :update, :dwstroy]
+  before_action :signed_in_user, only: [:index, :edit, :update, :destroy]
   before_action :correct_user,   only: [:edit, :update]
   before_action :admin_user,     only: :destroy
 
@@ -12,7 +12,11 @@ class UsersController < ApplicationController
   end
 
   def new
+    #if :signed_in_user # с этой переадресацией из упраженения 9.6 пункта 6 тесты не проходят - штозанахуй? 
+    #  redirect_to root_url
+    #else
     @user = User.new
+    #end
   end
 
   def create
